@@ -7,7 +7,11 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "dev:ssr": "ng run spaceXplorer:serve-ssr",
+    "serve:ssr": "node dist/spaceXplorer/server/main.js",
+    "build:ssr": "ng build --prod && ng run spaceXplorer:server:production",
+    "prerender": "ng run spaceXplorer:prerender"
   },
   "private": true,
   "dependencies": {
@@ -18,7 +22,10 @@
     "@angular/forms": "~11.2.0",
     "@angular/platform-browser": "~11.2.0",
     "@angular/platform-browser-dynamic": "~11.2.0",
+    "@angular/platform-server": "~11.2.0",
     "@angular/router": "~11.2.0",
+    "@nguniversal/express-engine": "^11.2.0",
+    "express": "^4.15.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
@@ -27,9 +34,13 @@
     "@angular-devkit/build-angular": "~0.1102.0",
     "@angular/cli": "~11.2.0",
     "@angular/compiler-cli": "~11.2.0",
+    "@nguniversal/builders": "^11.2.0",
+    "@types/express": "^4.17.0",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^4.3.8",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~6.1.0",
@@ -37,9 +48,25 @@
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
+    "lint-staged": "^10.5.4",
+    "prettier": "2.2.1",
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
+    "tslint-config-prettier": "^1.18.0",
     "typescript": "~4.1.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,css,md}": "prettier --write"
   }
 }
