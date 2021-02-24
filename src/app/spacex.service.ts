@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SpacexService {
-  apiUrl = 'https://api.spaceXdata.com/v3/launches?limit=1';
+  apiUrl = 'https://api.spaceXdata.com/v3/launches';
 
   constructor(private http: HttpClient) { }
 

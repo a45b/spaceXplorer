@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   constructor(private spacexService: SpacexService) {}
 
   ngOnInit(): void {
-    this.list$ = this.spacexService.getData(1, true);
+    this.list$ = this.spacexService.getData(100);
   }
   
 }
