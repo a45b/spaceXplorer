@@ -1,1 +1,99 @@
 /* You can add global styles to this file, and also import other style files */
+@import './styles/variables';
+
+html {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    position: relative;
+    overflow-x: hidden;
+    box-sizing: inherit;
+    text-rendering: optimizeLegibility;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.flex-wrap {
+    flex-wrap: wrap; 
+}
+
+.flex-basis-50per {
+    flex-basis: 50%;
+}
+
+.content-center {
+    justify-content: center;
+}
+
+.items-center{
+    align-items: center;
+}
+
+.border-0 {
+    border: 0;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.pb-4 {
+    padding-bottom: 4px;
+}
+
+.btn-green {
+    width: 3.5rem;
+    color: $color-black;
+    background: $btn-bg-color;
+    padding: 0.3rem;
+    text-align: center;
+    border-radius: 4px;
+    font-weight: 500;
+    line-height: 1;
+    white-space: nowrap;
+    font-family: sans-serif;
+
+    &.active {
+        background: $btn-bg-active-color;
+    }
+}
+
+button {
+    outline: none;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.width-60per {
+    width: 60%;
+}
+
+.border-bottom-1 {
+    border-bottom: 1px solid $color-black;
+}
+
+.line-height-2 {
+    line-height: 2;
+}
+
+.text-semi-bold {
+    font-weight: 600;
+}
+.text-semi-blue {
+    color: $color-blue;
+}
+.ma-10 {
+    margin: 10px;
+}

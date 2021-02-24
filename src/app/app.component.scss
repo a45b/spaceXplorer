@@ -1,0 +1,34 @@
+@import '../styles/variables';
+
+:host {
+  .containerx {
+    width: 100%;
+    min-height: 100vh;
+    background: $color-gray;
+    display: flex;
+    flex-direction: column;
+  }
+  header {
+    width: 100%;
+    height: 60px;
+  }
+  main {
+    display: flex;
+    width: 100%;
+    flex: 1;
+    // flex-direction: column;
+  }
+  aside {
+    flex: 1;
+    margin: 10px;
+    padding: 10px;
+    background: $color-white;
+  }
+  section {
+    flex: 2;
+  }
+  footer {
+    width: 100%;
+    height: 48px;
+  }
+}
