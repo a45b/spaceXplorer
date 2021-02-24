@@ -10,22 +10,22 @@ export class SpacexService {
 
   constructor(private http: HttpClient) { }
 
-  getData(limit = 100, launch?: boolean, land?: boolean, year?: number) {
-   let params = new HttpParams()
+  getData(limit = 100, launch?: boolean, land?: boolean, year?: number): any {
+   let params = new HttpParams();
    params = params.append('limit', limit.toString());
 
-    if (launch) {
+   if (launch) {
       params = params.append('launch_success', launch.toString());
     }
-    if (land) {
+   if (land) {
       params = params.append('launch_success', land.toString());
     }
-    if (year) {
+   if (year) {
       params = params.append('launch_success', year.toString());
     }
 
-    console.log(params.toString());
+   console.log(params.toString());
 
-    return this.http.get(this.apiUrl, { params });
+   return this.http.get(this.apiUrl, { params });
   }
 }

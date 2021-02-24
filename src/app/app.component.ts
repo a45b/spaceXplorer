@@ -13,15 +13,15 @@ export class AppComponent {
   boolOptions = [{ key: 'True', value: true}, {key: 'False', value: false }];
   years = [2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021];
  
-  selectYear(year: number) {
+  selectYear(year: number): void {
     this.selectedYear = year;
   }
 
-  setSuccessfulLaunch(option: boolean) {
+  setSuccessfulLaunch(option: boolean): void {
     this.isSuccessfulLaunch = option;
   }
 
-  setSuccessfulLanding(option: boolean) {
+  setSuccessfulLanding(option: boolean): void {
     this.isSuccessfulLanding = option;
   }
   
