@@ -29,11 +29,14 @@ jobs:
       - run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
       - run: ng build --prod --output-path docs --base-href="https://a45b.github.io/spaceXplorer/"
       - name: Publish generated content to GitHub Pages
-        uses: tsunematsu21/actions-publish-gh-pages@v1.0.1
-        with:
-            dir: dist
-            branch: gh-pages
-            token: ${{ secrets.ACCESS_TOKEN }}
+      - name: Angular Deploy gh-pages Actions
+      uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.3.1 ## replace by latest version without it you will see Expected format {org}/{repo}[/path]@ref. Actual 'AhsanAyaz/angular-deploy-gh-pages-actions',Input string was not in a correct format.
+      with:
+        github_access_token: ${{ secrets.ACCESS_TOKEN }} # see the Configuration section for how you can create secrets
+        build_configuration: prod # The build environment for the app. please look configurations in your angular.json
+        base_href: /spaceXplorer/   # make sure this corresponds to https://<your_username>.github.io/<base_href>/
+        deploy_branch: gh-pages # The branch the action should deploy to.
+        angular_dist_build_folder: dist/spaceXplorer # The folder where your project is supposed to be after running ng build by the action.          
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
