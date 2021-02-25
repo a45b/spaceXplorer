@@ -13,6 +13,9 @@ export class HomeComponent implements OnInit {
   constructor(private spacexService: SpacexService) {}
 
   ngOnInit(): void {
+    this.spacexService.appState$.subscribe((res) => {
+      console.log(res);
+    })
     this.list$ = this.spacexService.getData(100);
   }
   

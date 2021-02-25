@@ -13,6 +13,7 @@ body {
     overflow-x: hidden;
     box-sizing: inherit;
     text-rendering: optimizeLegibility;
+    background: #f2f2f2;
 }
 
 .flex {
@@ -97,3 +98,10 @@ button {
 .ma-10 {
     margin: 10px;
 }
+
+@media (min-width: 1440px) { 
+    body {
+        max-width: 1440px; 
+        margin: 0 auto; 
+    }
+  }

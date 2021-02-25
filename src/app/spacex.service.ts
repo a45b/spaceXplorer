@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { AppState } from './types';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SpacexService {
   apiUrl = 'https://api.spaceXdata.com/v3/launches';
+  appState$ = new BehaviorSubject<AppState | null>(null);
 
   constructor(private http: HttpClient) { }
 

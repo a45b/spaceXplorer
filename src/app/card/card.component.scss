@@ -2,15 +2,14 @@
 
 :host {
     .card {
-        width: 100%;
-        background: #fff;
+        background: $color-white;
         padding: 20px;
         margin: 10px;
         border-radius: 8px;
+        min-height: 386px
     }
     img {
-        width: auto;
-        height: 220px;
+        width: 100%;
         object-fit: cover;
     }
 
@@ -28,5 +27,28 @@
     ul {
         margin-block: 4px;
         padding-inline: 20px;
+    }
+}
+@media (max-width: 700px) {
+    :host {
+        width: 100%;
+    }
+}
+
+@media (min-width: 701px) and (max-width: 1024px) { 
+    :host {
+        width: 50%;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1440px) { 
+    :host {
+        width: 25%;
+    }
+}
+
+@media (min-width: 1440px) { 
+    :host {
+        width: 25%;
     }
 }
