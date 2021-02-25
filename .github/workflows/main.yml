@@ -27,10 +27,13 @@ jobs:
       - run: npm install
       - run: npm install -g @angular/cli > /dev/null
       - run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
-      - run: git checkout gh-pages
-      - run: git pull origin main
-      - run: ng build --prod --output-path docs --base-href /spaceXplorer/
-
+      - run: ng build --prod --output-path docs --base-href="https://a45b.github.io/spaceXplorer/"
+      - name: Publish generated content to GitHub Pages
+        uses: tsunematsu21/actions-publish-gh-pages@v1.0.1
+        with:
+            dir: dist
+            branch: gh-pages
+            token: ${{ secrets.ACCESS_TOKEN }}
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
