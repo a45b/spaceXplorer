@@ -29,7 +29,6 @@ jobs:
       - run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
       - run: ng build --prod --output-path docs --base-href="https://a45b.github.io/spaceXplorer/"
       - name: Publish generated content to GitHub Pages
-      - name: Angular Deploy gh-pages Actions
       uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.3.1 ## replace by latest version without it you will see Expected format {org}/{repo}[/path]@ref. Actual 'AhsanAyaz/angular-deploy-gh-pages-actions',Input string was not in a correct format.
       with:
         github_access_token: ${{ secrets.ACCESS_TOKEN }} # see the Configuration section for how you can create secrets
