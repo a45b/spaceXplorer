@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs/internal/Observable';
 import { SpacexService } from '../spacex.service';
 
 @Component({
@@ -7,16 +8,20 @@ import { SpacexService } from '../spacex.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
-
+export class HomeComponent implements OnInit, OnDestroy {
   list$!: Observable<any>;
+  subscription$!: Subscription;
   constructor(private spacexService: SpacexService) {}
 
   ngOnInit(): void {
-    this.spacexService.appState$.subscribe((res) => {
-      console.log(res);
-    })
-    this.list$ = this.spacexService.getData(100);
+    this.subscription$ = this.spacexService.filters$.subscribe(([year, launch, landing]) => {
+      console.log(new Date().getTime());
+      this.list$ = this.spacexService.fetchData(100, year, launch, landing);
+    });
   }
-  
+
+  ngOnDestroy(): void {
+    this.subscription$.unsubscribe();
+  }
+
 }

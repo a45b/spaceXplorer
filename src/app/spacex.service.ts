@@ -1,34 +1,38 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { AppState } from './types';
+import { Injectable } from '@angular/core'
+import { HttpClient, HttpParams } from '@angular/common/http'
+
+import { BehaviorSubject, combineLatest } from 'rxjs'
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SpacexService {
   apiUrl = 'https://api.spaceXdata.com/v3/launches';
-  appState$ = new BehaviorSubject<AppState | null>(null);
+  selectedYear$ = new BehaviorSubject<number | null>(null);
+  isSuccessfulLaunch$ = new BehaviorSubject<boolean | null>(null);
+  isSuccessfulLanding$ = new BehaviorSubject<boolean | null>(null);
+  
+  filters$ = combineLatest([
+    this.selectedYear$, 
+    this.isSuccessfulLaunch$, 
+    this.isSuccessfulLanding$
+  ]);
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
+  fetchData(limit = 100, year?: number | null, launch?: boolean | null, land?: boolean | null): any {
+    let params = new HttpParams()
+    params = params.append('limit', limit.toString())
 
-  getData(limit = 100, launch?: boolean, land?: boolean, year?: number): any {
-   let params = new HttpParams();
-   params = params.append('limit', limit.toString());
-
-   if (launch) {
-      params = params.append('launch_success', launch.toString());
+    if (year !== null && year !== undefined) {
+      params = params.append('launch_year', year.toString())
     }
-   if (land) {
-      params = params.append('launch_success', land.toString());
+    if (launch !== null && launch !== undefined) {
+      params = params.append('launch_success', launch.toString())
     }
-   if (year) {
-      params = params.append('launch_success', year.toString());
+    if (land !== null && land !== undefined) {
+      params = params.append('land_success', land.toString())
     }
 
-   console.log(params.toString());
-
-   return this.http.get(this.apiUrl, { params });
+    return this.http.get(this.apiUrl, { params })
   }
 }
