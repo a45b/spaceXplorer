@@ -13,12 +13,11 @@ export class HttpInterceptorService implements HttpInterceptor {
   constructor(private transferState: TransferState, @Inject(PLATFORM_ID) private platformId: any) {}
 
   public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
- 
     if (request.method !== 'GET') {
       return next.handle(request);
     }
  
-    const key: StateKey<string> = makeStateKey<string>(request.url);
+    const key: StateKey<string> = makeStateKey<string>(request.urlWithParams);
  
     if (isPlatformServer(this.platformId)) {
       return next.handle(request).pipe(tap((event) => {
