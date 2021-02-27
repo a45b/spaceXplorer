@@ -26,7 +26,7 @@ jobs:
           node-version: '15.x'
       - run: npm install
       - run: npm install -g @angular/cli > /dev/null
-      - run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+      #- run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
       - run: ng build --prod --output-path dist/spaceXplorer --base-href="/spaceXplorer/"
       # Publish generated content to GitHub Pages
       - name: Publish generated content to GitHub Pages
