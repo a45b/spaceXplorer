@@ -53,15 +53,15 @@ Responsive Design and other UI elements - It's as per what the task required fro
 Without SSR and from served from Github Pages
 
 Mobile
-![lighthouse-without-ssr-mobile]("./lighthouse-without-ssr-mobile.png?raw=true")
+![lighthouse-without-ssr-mobile](lighthouse-without-ssr-mobile.png?raw=true)
 
 Desktop
-![lighthouse-without-ssr-desktop]("./lighthouse-without-ssr-desktop.png?raw=true")
+![lighthouse-without-ssr-desktop](lighthouse-without-ssr-desktop.png?raw=true)
 
 With SSR and from served from localhost
 
 Mobile
-![lighthouse-with-ssr-mobile]("./lighthouse-ssr-mobile.png?raw=true")
+![lighthouse-with-ssr-mobile](lighthouse-ssr-mobile.png?raw=true)
 
 Desktop
-![lighthouse-with-ssr-desktop]("./lighthouse-ssr-desktop.png?raw=true")
+![lighthouse-with-ssr-desktop](lighthouse-ssr-desktop.png?raw=true)
