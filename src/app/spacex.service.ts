@@ -7,7 +7,7 @@ import { BehaviorSubject, combineLatest } from 'rxjs'
   providedIn: 'root',
 })
 export class SpacexService {
-  apiUrl = 'https://api.spaceXdata.com/v3/launches';
+  apiUrl = 'assets/launches.json';
   selectedYear$ = new BehaviorSubject<number | null>(null);
   isSuccessfulLaunch$ = new BehaviorSubject<boolean | null>(null);
   isSuccessfulLanding$ = new BehaviorSubject<boolean | null>(null);
