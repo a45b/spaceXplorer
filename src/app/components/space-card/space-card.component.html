@@ -1,0 +1,25 @@
+<a class="xcard" [routerLink]="['/launches', data.id]" >
+    <nz-card nzHoverable [nzCover]="coverTemplate">
+      <nz-card-meta 
+        class="text-center"
+        [nzTitle]="metaTemplate">
+      </nz-card-meta>
+    </nz-card>
+    
+    <ng-template #coverTemplate>
+      <img 
+        nz-image
+        nzDisablePreview="true"
+        nzFallback="assets/spacex.svg"
+        [alt]="data?.name" 
+        [nzSrc]="data?.links?.patch?.small"/>
+    </ng-template>
+
+    <ng-template #metaTemplate>
+      <div class="status">
+        <nz-tag *ngIf="!data.success" [nzColor]="'error'">Failed</nz-tag>
+        <nz-tag *ngIf="data.success" [nzColor]="'success'">Success</nz-tag>
+      </div>
+      <div>{{ data?.name }} #{{ data?.flight_number }}</div>
+    </ng-template>
+</a>

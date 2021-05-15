@@ -8,6 +8,8 @@ import { SpacexService } from './spacex.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  checked = true;
+  isCollapsed = false;
   title = 'spaceXplorer';
   selectedYear: number | null = null;
   isSuccessfulLaunch: boolean | null = null;

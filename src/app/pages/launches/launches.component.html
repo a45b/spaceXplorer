@@ -1,0 +1,17 @@
+<div class="inner-content">
+  <nz-page-header [nzGhost]="true">
+    <nz-page-header-title>Launches</nz-page-header-title>
+    <nz-page-header-extra>
+      <label>Year</label>
+      <nz-select ngModel="All">
+        <nz-option nzValue="All" nzLabel="All"></nz-option>
+        <nz-option *ngFor="let year of years" [nzValue]="year" [nzLabel]="year"></nz-option>
+      </nz-select>
+    </nz-page-header-extra>
+    <nz-page-header-content class="content">
+      <ng-container *ngFor="let data of (list$ | async)">
+          <app-space-card [data]="data" class="item"></app-space-card>
+       </ng-container>
+    </nz-page-header-content>
+  </nz-page-header>
+</div>

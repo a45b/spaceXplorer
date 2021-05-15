@@ -30,7 +30,9 @@ export class HttpInterceptorService implements HttpInterceptor {
         this.transferState.remove(key);
         return of(response);
       } else {
-        return next.handle(request);
+        return next.handle(request).pipe(tap((event) => {
+          this.transferState.set(key, (<HttpResponse<any>> event).body);
+        }));
       }
     }
   }

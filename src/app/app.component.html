@@ -1,71 +1,9 @@
-<div class="containerx">
-  <header>
-    <h1 class="ma-10">SpaceX Launch Programs</h1>
-  </header>
-  <main>
-    <aside>
-      <div class="filters">
-        <h2>Filters</h2>
-        <p class="flex content-center text-center">
-          <label class="width-60per border-bottom-1 line-height-2">Launch Year</label>
-        </p>
-        <div class="flex flex-wrap">
-          <ng-container *ngFor="let year of years">
-            <div class="flex flex-basis-50per content-center pb-4">
-              <button
-                type="button"
-                class="border-0 cursor-pointer btn-green"
-                [class.active]="selectedYear === year"
-                (click)="selectYear(year)"
-              >
-                {{ year }}
-              </button>
-            </div>
-          </ng-container>
-        </div>
-
-        <p class="flex content-center text-center">
-          <label class="width-60per border-bottom-1 line-height-2">Successful Launch</label>
-        </p>
-        <div class="flex flex-wrap">
-          <ng-container *ngFor="let option of boolOptions">
-            <div class="flex flex-basis-50per content-center pb-4">
-              <button
-                type="button"
-                class="border-0 cursor-pointer btn-green"
-                [class.active]="isSuccessfulLaunch === option.value"
-                (click)="setSuccessfulLaunch(option.value)"
-              >
-                {{ option.key }}
-              </button>
-            </div>
-          </ng-container>
-        </div>
-
-        <p class="flex content-center text-center">
-          <label class="width-60per border-bottom-1 line-height-2">Successful Landing</label>
-        </p>
-        <div class="flex flex-wrap">
-          <ng-container *ngFor="let option of boolOptions">
-            <div class="flex flex-basis-50per content-center pb-4">
-              <button
-                type="button"
-                class="border-0 cursor-pointer btn-green"
-                [class.active]="isSuccessfulLanding === option.value"
-                (click)="setSuccessfulLanding(option.value)"
-              >
-              {{ option.key }}
-              </button>
-            </div>
-          </ng-container>
-        </div>
-      </div>
-    </aside>
-    <section class="flex">
-      <router-outlet></router-outlet>
-    </section>
-  </main>
-  <footer>
-    <p class="text-center"><strong>Developed by</strong> - Kamal Dev</p>
-  </footer>
-</div>
+<nz-layout class="layout">
+  <nz-header><div class="logo" routerLink="/">SpaceXplorer</div></nz-header>
+  <nz-content><router-outlet></router-outlet></nz-content>
+  <nz-footer>
+    <div><strong>API from</strong><a href="https://docs.spacexdata.com/"> SpaceXdata </a></div>
+    <div><strong>Built with</strong><a href="https://angular.io"> Angular </a> & <a href="https://ng.ant.design"> Ant Design </a>. <strong>Developed by</strong> - <a href="https://www.linkedin.com/in/k-a-m-a-l-d-e-v/">Kamal Dev</a></div>
+    <div><strong>SpaceX</strong> Logo and everything here definitely belongs to <strong>SpaceX</strong></div>
+  </nz-footer>
+</nz-layout>
