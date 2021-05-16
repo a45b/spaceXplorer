@@ -10,8 +10,8 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v2
-      with:
-        ref: gh-pages
+        with:
+          ref: gh-pages
       - uses: actions/setup-node@v2
       - run: git checkout gh-pages
       - run: git pull origin main -f
