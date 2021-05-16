@@ -6,13 +6,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions: 
+      contents: write
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
-      - run: npm install @angular/cli
+      - run: npm install @angular/cli > /dev/null
       - run: npm install
-      - run: git checkout gh-pages
-      - run: git pull origin main
       - run: ng build --prod --output-path docs --base-href /spaceXplorer/
       - uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.3.2
         with:
