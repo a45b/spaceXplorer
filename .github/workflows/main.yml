@@ -14,7 +14,7 @@ jobs:
           ref: gh-pages
       - uses: actions/setup-node@v2
       - run: git checkout gh-pages
-      - run: git pull origin main -f
+      - run: git pull origin main
       - run: npm install @angular/cli > /dev/null
       - run: npm install
       - run: ng build --prod --output-path dist/spaceXplorer --base-href="/spaceXplorer/"
