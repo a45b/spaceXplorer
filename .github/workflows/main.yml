@@ -15,8 +15,8 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: self-hosted
-    
+    runs-on: ubuntu-latest
+
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -24,15 +24,17 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '15.x'
-      - run: npm install
-      - run: npm install -g @angular/cli > /dev/null
-      - run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+        run: |
+          npm install
+          npm install -g @angular/cli > /dev/null
+          npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-      - run: git checkout gh-pages
-      - run: git pull origin main
-      - run: ng build --prod --output-path docs --base-href /spaceXplorer/
+        run: |
+          git checkout gh-pages
+          git pull origin main
+          ng build --prod --output-path docs --base-href /spaceXplorer/
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
