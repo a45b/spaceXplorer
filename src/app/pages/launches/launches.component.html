@@ -1,0 +1,24 @@
+<div class="inner-content">
+  <nz-page-header [nzGhost]="true">
+    <nz-page-header-title>Launches</nz-page-header-title>
+    <nz-page-header-extra>
+      <label nz-checkbox class="select-none" [formControl]="onlySuccess">Only Success</label>
+      <nz-divider nzType="vertical"></nz-divider>
+      <label>Year</label>
+      <nz-select [formControl]="selectedYear">
+        <nz-option nzValue="All" nzLabel="All"></nz-option>
+        <nz-option *ngFor="let year of years" [nzValue]="year" [nzLabel]="year"></nz-option>
+      </nz-select>
+    </nz-page-header-extra>
+    <nz-page-header-content class="content">
+      <ng-container *ngFor="let data of (list$ | async)">
+          <app-space-card [data]="data" class="item"></app-space-card>
+       </ng-container>
+       <ng-container *ngIf="!(list$ | async)?.length">
+        <div class="empty">
+          <nz-empty nzNotFoundImage="simple"></nz-empty>
+        </div>
+       </ng-container>
+    </nz-page-header-content>
+  </nz-page-header>
+</div>

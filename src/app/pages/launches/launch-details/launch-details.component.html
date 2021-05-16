@@ -1,0 +1,102 @@
+<div class="inner-content">
+  <div *ngIf="(details$ | async) as details">
+    <nz-page-header
+      nzBackIcon
+      [nzGhost]="true"
+      (nzBack)="onBack()"
+    >
+      <nz-avatar
+        nz-page-header-avatar
+        nzIcon="rocket"
+        style="background-color: #000"
+        [nzSrc]="details?.links?.patch?.small"
+      ></nz-avatar>
+      <nz-page-header-title>{{ details?.name }} #{{ details?.flight_number }}</nz-page-header-title
+      >
+      <nz-page-header-tags>
+        <nz-tag *ngIf="details.upcoming" [nzColor]="'processing'">Upcoming</nz-tag>
+        <nz-tag *ngIf="details?.success" [nzColor]="'success'">Success</nz-tag>
+        <nz-tag *ngIf="!details?.success && !details?.upcoming" [nzColor]="'error'">Failed</nz-tag>
+      </nz-page-header-tags>
+      <nz-page-header-content class="content">
+        <div nz-row [nzGutter]="[16]">
+          <div nz-col class="gutter-row" [nzXs]="24" [nzMd]="12">
+            <div nz-row>
+              <div nz-col [nzSpan]="24">
+                <nz-list nzItemLayout="horizontal">
+                  <nz-list-item>
+                    <nz-list-item-meta nzDescription="Name">
+                      <nz-list-item-meta-title>
+                        {{ details?.name }}
+                      </nz-list-item-meta-title>
+                    </nz-list-item-meta>
+                  </nz-list-item>
+
+                  <nz-list-item>
+                    <nz-list-item-meta nzDescription="Flight number">
+                      <nz-list-item-meta-title>
+                        {{ details?.flight_number }}
+                      </nz-list-item-meta-title>
+                    </nz-list-item-meta>
+                  </nz-list-item>
+
+                  <nz-list-item>
+                    <nz-list-item-meta nzDescription="Date">
+                      <nz-list-item-meta-title>
+                        {{ details?.date_utc | date: 'long' }}
+                      </nz-list-item-meta-title>
+                    </nz-list-item-meta>
+                  </nz-list-item>
+                  <nz-list-item>
+                    <nz-list-item-meta nzDescription="Details">
+                      <nz-list-item-meta-title>
+                        {{ details?.details || 'No Record' }}
+                      </nz-list-item-meta-title>
+                    </nz-list-item-meta>
+                  </nz-list-item>
+
+                  <nz-list-item>
+                    <nz-list-item-meta nzDescription="Links">
+                      <nz-list-item-meta-title>
+                        <div class="content-link">
+                          <a rel="noopener noreferrer" target="_blank" [href]="details?.links?.webcast"><i nz-icon nzType="youtube" nzTheme="outline"></i></a>
+                          <a rel="noopener noreferrer" target="_blank" [href]="details?.links?.article"><i nz-icon nzType="link" nzTheme="outline"></i></a>
+                          <a rel="noopener noreferrer" target="_blank" [href]="details?.links?.reddit?.launch"><i nz-icon nzType="reddit" nzTheme="outline"></i></a>
+                        </div>
+                      </nz-list-item-meta-title>
+                    </nz-list-item-meta>
+                  </nz-list-item>
+                </nz-list>
+              </div>
+            </div>
+          </div>
+          <div nz-col class="gutter-row" [nzXs]="24" [nzMd]="12" [ngStyle]="{'height': '64vh'}">
+            <div nz-row [nzGutter]="[16, 16]" *ngIf="(details?.links?.flickr?.original?.length)">
+              <ng-container *ngFor="let photo of details?.links?.flickr?.original">
+                <div
+                  nz-col
+                  class="gutter-row"
+                  [nzXs]="24"
+                  [nzSm]="12"
+                  [nzMd]="6"
+                >
+                  <img
+                    nz-image
+                    [ngStyle]="{'object-fit': 'cover', 'height': '200px', 'width': '100%'}"
+                    [nzSrc]="photo"
+                    [alt]="details?.name"
+                  />
+                </div>
+              </ng-container>
+            </div>
+            <div nz-row *ngIf="!(details?.links?.flickr?.original?.length)">
+              <div class="empty">
+                <nz-empty nzNotFoundImage="simple" nzNotFoundContent="No Photos"></nz-empty>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nz-page-header-content>
+    </nz-page-header>
+  </div>
+</div>
