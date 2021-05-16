@@ -16,7 +16,7 @@ jobs:
       - run: git checkout gh-pages
       - run: npm install @angular/cli > /dev/null
       - run: npm install
-      - run: ng build --prod --output-path dist/spaceXplorer --base-href="/spaceXplorer/"
+      - run: npm run build
       - uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.3.2
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }} # see the Configuration section for how you can create secrets
