@@ -4,9 +4,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Install and Setup
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
       - run: npm install -g @angular/cli > /dev/null
       - run: npm install
-      
