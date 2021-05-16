@@ -10,10 +10,14 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v2
+      with:
+        ref: gh-pages
       - uses: actions/setup-node@v2
+      - run: git checkout gh-pages
+      - run: git pull origin main -f
       - run: npm install @angular/cli > /dev/null
       - run: npm install
-      - run: npm run build --prod --output-path dist/spaceXplorer --base-href="/spaceXplorer/"
+      - run: ng build --prod --output-path dist/spaceXplorer --base-href="/spaceXplorer/"
       - uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.3.2
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }} # see the Configuration section for how you can create secrets
