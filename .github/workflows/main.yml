@@ -16,9 +16,6 @@ jobs:
       - run: git checkout gh-pages
       - run: git pull origin main
       - run: ng build --prod --output-path docs --base-href /spaceXplorer/
-
-      # Publish generated content to GitHub Pages
-      - name: Publish generated content to GitHub Pages
       - uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.3.2
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }} # see the Configuration section for how you can create secrets
