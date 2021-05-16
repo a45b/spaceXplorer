@@ -3,16 +3,18 @@ import { HttpClient, HttpParams } from '@angular/common/http'
 
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs'
 import { environment } from '../environments/environment';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SpacexService {
   apiUrl = environment.apiUrl;
-  selectedYear$ = new BehaviorSubject<number | null>(null);
+  selectedYear$ = new BehaviorSubject<number | string>('All');
   isSuccessfulLaunch$ = new BehaviorSubject<boolean | null>(null);
   isSuccessfulLanding$ = new BehaviorSubject<boolean | null>(null);
   data$!: Observable<any>;
+  
   filters$ = combineLatest([
     this.selectedYear$, 
     this.isSuccessfulLaunch$, 
@@ -21,57 +23,42 @@ export class SpacexService {
 
   constructor(private http: HttpClient) {}
 
-  fetchData(limit = 100, year?: number | null, launch?: boolean | null, land?: boolean | null): any {
-    let params = new HttpParams()
-    params = params.append('limit', limit.toString())
-
+  fetchData(year?: number | string, launch?: boolean | null): any {
+    let params = new HttpParams();
+    
     if (year !== null && year !== undefined) {
       params = params.append('launch_year', year.toString())
     }
     if (launch !== null && launch !== undefined) {
       params = params.append('launch_success', launch.toString())
     }
-    if (land !== null && land !== undefined) {
-      params = params.append('land_success', land.toString())
-    }
 
     if (!this.data$) {
-      // this.data$ = this.http.get(`${this.apiUrl}/launches`, { params });
-      this.data$ = this.getAllLaunches();
+      this.data$ = this.http.get(`${this.apiUrl}/launches`, { params });
+      return this.data$;
     }
-    return this.data$;
-  }
 
-  /*** API ***/
-  
-  // getLaunch(id: string): any {
-  //   return this.http.get('assets/launches.json').pipe(
-  //     filter((launch: any) => launch.id === id)
-  //   )
-  // }
-
-  getALLlandpads() {
-    return this.http.get('assets/landpads.json');
-  }
-
-  getAllLaunches() {
-    return this.http.get('assets/launches.json');
-  }
-
-  getAllLaunchpads() {
-    return this.http.get('assets/launchpads.json');
-  }
-
-  getAllPayloads() {
-    return this.http.get('assets/payloads.json');
+    return this.data$.pipe(
+      map((list: any[]) => {
+        return list.filter((r) => {
+          if (year === 'All') {
+            return r;
+          } else if (year === new Date(r.date_utc).getFullYear()) {
+            return r;
+          }
+        }).filter((r) => {
+          if (!launch) {
+            return r;
+          } else if (launch === r.success){
+            return r;
+          }
+        })
+      })
+    );
   }
   
-  getAllRockets() {
-    return this.http.get('assets/rockets.json');
-  }
-
-  getAllShips() {
-    return this.http.get('assets/ships.json');
+  getLaunchById(id: string | null): any {
+    return this.http.get(`${this.apiUrl}/launches/${id}`);
   }
   
 }

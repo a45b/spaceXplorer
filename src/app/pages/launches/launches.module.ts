@@ -18,11 +18,14 @@ import { LaunchesRoutingModule } from './launches-routing.module';
 import { LaunchesComponent } from './launches.component';
 import { NzImageModule } from 'ng-zorro-antd/image';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
-import { LaunchDetailsComponent } from './launch-details.component';
+import { LaunchDetailsComponent } from './launch-details/launch-details.component';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzListModule } from 'ng-zorro-antd/list';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzCarouselModule } from 'ng-zorro-antd/carousel';
+import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { SpaceCardComponent } from 'src/app/components/space-card/space-card.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,8 @@ import { SpaceCardComponent } from 'src/app/components/space-card/space-card.com
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     LaunchesRoutingModule,
     IconsProviderModule,
     NzLayoutModule,
@@ -51,7 +56,9 @@ import { SpaceCardComponent } from 'src/app/components/space-card/space-card.com
     NzToolTipModule,
     NzTagModule,
     NzListModule,
-    NzCarouselModule
+    NzCarouselModule,
+    NzDividerModule,
+    NzEmptyModule
   ]
 })
 export class LaunchesModule { }

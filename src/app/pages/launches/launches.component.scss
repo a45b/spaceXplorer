@@ -3,8 +3,8 @@
         display: flex;
         width: 100%;
         flex-wrap: wrap;
-        justify-content: space-between;
         margin: 1rem auto;
+        justify-content: space-between;
         
         &:after {
             content: "";

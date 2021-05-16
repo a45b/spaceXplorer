@@ -1,4 +1,4 @@
-<a class="xcard" [routerLink]="['/launches', data.id]" >
+<a class="xcard" [routerLink]="['/launches', data.id]">
     <nz-card nzHoverable [nzCover]="coverTemplate">
       <nz-card-meta 
         class="text-center"
@@ -17,9 +17,11 @@
 
     <ng-template #metaTemplate>
       <div class="status">
-        <nz-tag *ngIf="!data.success" [nzColor]="'error'">Failed</nz-tag>
+        <nz-tag *ngIf="data.upcoming" [nzColor]="'processing'">Upcoming</nz-tag>
         <nz-tag *ngIf="data.success" [nzColor]="'success'">Success</nz-tag>
+        <nz-tag *ngIf="!data.success && !data.upcoming" [nzColor]="'error'">Failed</nz-tag>
       </div>
+      <div><small>{{ data?.date_utc | date: 'mediumDate'}}</small></div>
       <div>{{ data?.name }} #{{ data?.flight_number }}</div>
     </ng-template>
 </a>
