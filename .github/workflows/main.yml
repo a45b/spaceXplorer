@@ -13,7 +13,7 @@ jobs:
       - uses: actions/setup-node@v2
       - run: npm install @angular/cli > /dev/null
       - run: npm install
-      - run: ng build --prod --output-path docs --base-href /spaceXplorer/
+      - run: npm run build --prod --output-path docs --base-href /spaceXplorer/
       - uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.3.2
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }} # see the Configuration section for how you can create secrets
