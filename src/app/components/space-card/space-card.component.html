@@ -8,11 +8,17 @@
     
     <ng-template #coverTemplate>
       <img 
+        *ngIf="!!(data?.links?.patch?.small)"
         nz-image
         nzDisablePreview="true"
-        nzFallback="assets/spacex.svg"
         [alt]="data?.name" 
         [nzSrc]="data?.links?.patch?.small"/>
+      <img 
+        *ngIf="!(data?.links?.patch?.small)"
+        nz-image
+        nzDisablePreview="true"
+        [alt]="data?.name" 
+        nzSrc="assets/spacex.svg"/> 
     </ng-template>
 
     <ng-template #metaTemplate>
